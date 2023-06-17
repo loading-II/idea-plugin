@@ -4,18 +4,7 @@
     <version>1.0</version>
     <vendor email="**@163.com" url="https://www.jianshu.com/u/260df6dd6387">Guoql</vendor>
 
-    <description><![CDATA[
-    An Android scaffolding toolkit to boost your Android projects.
-This is an Idea plugin helps Android developers build apps faster. It provides a feature-rich scaffolding solution to generate full project templates, UI layouts, adapters, fragments and other commonly used code structures. Reduce repetitive work and focus on business logic!
-Main Features:
-- Project scaffolding: Generate a full Android project with custom package name and save path. Choice of an empty project or a starter project integrated with Jetpack libraries like Room, LiveData, ViewModel, Navigation and so on.
-- UI scaffolding: Generate Activity(or Fragment), Adapter for RecyclerView(or GridView, ListView), basic XML layout files with one click. Strongly-typed Adapter saves you from a bunch of findViewById.
-- Fragment generator: Generate ListFragment, DetailFragment, DialogFragment and so on. Take away the repetitive work of creating Fragments.
-- Database scaffolding: Generate basic Create, Read, Update, Delete (CRUD) operations for entities in your Room database.
-- And more: ViewModel generator, data model(POJO) generator, utility class generator, etc.
-This plugin utilizes the power of templates and makes use of IntelliJ live templates variable support. Templates are fully customizable. Once generated, the code is opened in the editor so you can modify it on demand.
-For any Android developers who want to improve productivity, this plugin is a must-have tool for your IntelliJ IDEA. Use it and focus on what really matters to build your Android apps faster and better!
-]]></description>
+    <description><![CDATA[Easy to create MVVM.[ ⌃⇧M ] required: androidx,LiveData,DataBinding,Kotlin,ViewModel plucky@echo.engineer]]></description>
 
     <change-notes><![CDATA[
      view binding、data binding、compose
