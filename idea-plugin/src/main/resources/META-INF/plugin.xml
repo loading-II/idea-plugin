@@ -54,6 +54,10 @@
                     description="new mvvm plugin"
                     icon="/icons/ic_logo.png"/>
 
+            <action id="com.flutter.mvvm.page" class="com.frame.plugin.FlutterPage" text="Text _name"
+                    description="new mvvm plugin"
+                    icon="/icons/ic_logo.png"/>
+
 
         </group>
 

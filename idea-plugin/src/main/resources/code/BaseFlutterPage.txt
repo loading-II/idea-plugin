@@ -1,0 +1,95 @@
+﻿import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import '../../common/base/BasePage.dart';
+import '../../common/ViewModelProvider.dart';
+
+import '&HomeViewModel&.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+/*
+ * #                                                   #
+ * #                       _oo0oo_                     #
+ * #                      o8888888o                    #
+ * #                      88" . "88                    #
+ * #                      (| -_- |)                    #
+ * #                      0\  =  /0                    #
+ * #                    ___/`---'\___                  #
+ * #                  .' \\|     |# '.                 #
+ * #                 / \\|||  :  |||# \                #
+ * #                / _||||| -:- |||||- \              #
+ * #               |   | \\\  -  #/ |   |              #
+ * #               | \_|  ''\---/''  |_/ |             #
+ * #               \  .-\__  '-'  ___/-. /             #
+ * #             ___'. .'  /--.--\  `. .'___           #
+ * #          ."" '<  `.___\_<|>_/___.' >' "".         #
+ * #         | | :  `- \`.;`\ _ /`;.`/ - ` : | |       #
+ * #         \  \ `_.   \_ __\ /__ _/   .-` /  /       #
+ * #     =====`-.____`.___ \_____/___.-`___.-'=====    #
+ * #                       `=---='                     #
+ * #     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   #
+ * #                                                   #
+ * #               佛祖保佑         永无BUG              #
+ * #                                                   #
+ */
+
+class &Home&Page extends BaseRoutePage {
+
+  static navigator(BuildContext context){
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return &Home&Page.getRoutePage(const &Home&Page());
+      }));
+    }
+
+  static ViewModelProvider<&HomeViewModel&> getRoutePage(BaseRoutePage child) {
+    return ViewModelProvider(viewModel: &HomeViewModel&(), child: child);
+  }
+
+  const &Home&Page({super.key});
+
+  @override
+  ConsumerState<&Home&Page> createState() => &Home&PageState();
+}
+
+class &Home&PageState extends BaseRoutePageState<&Home&Page> {
+  &HomeViewModel&? _viewModel;
+
+  @override
+  &HomeViewModel& getViewModel() {
+    _viewModel ??= ViewModelProvider.of(context);
+    return _viewModel!;
+  }
+
+  @override
+  void onLoad() {}
+
+  @override
+  void onStateChange() {
+    ref.listen(m&Home&StateProvider, (previous, next) { });
+  }
+
+  @override
+  Widget buildContent(BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('&Home&Page'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'hello this is &Home&Page;',
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          tooltip: 'Increment',
+          child: const Icon(Icons.add),
+        ),
+      );
+  }
+}
+
+

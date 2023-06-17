@@ -1,0 +1,68 @@
+﻿import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:we_flutter/common/base/BaseViewModel.dart';
+
+/*
+ * #                                                   #
+ * #                       _oo0oo_                     #
+ * #                      o8888888o                    #
+ * #                      88" . "88                    #
+ * #                      (| -_- |)                    #
+ * #                      0\  =  /0                    #
+ * #                    ___/`---'\___                  #
+ * #                  .' \\|     |# '.                 #
+ * #                 / \\|||  :  |||# \                #
+ * #                / _||||| -:- |||||- \              #
+ * #               |   | \\\  -  #/ |   |              #
+ * #               | \_|  ''\---/''  |_/ |             #
+ * #               \  .-\__  '-'  ___/-. /             #
+ * #             ___'. .'  /--.--\  `. .'___           #
+ * #          ."" '<  `.___\_<|>_/___.' >' "".         #
+ * #         | | :  `- \`.;`\ _ /`;.`/ - ` : | |       #
+ * #         \  \ `_.   \_ __\ /__ _/   .-` /  /       #
+ * #     =====`-.____`.___ \_____/___.-`___.-'=====    #
+ * #                       `=---='                     #
+ * #     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   #
+ * #                                                   #
+ * #               佛祖保佑         永无BUG              #
+ * #                                                   #
+ */
+
+class &Home&StateEntity {
+  final int id;
+  final String name;
+
+  &Home&StateEntity({required this.id, required this.name});
+
+  &Home&StateEntity copyWith(int? id, String? name) {
+    return &Home&StateEntity(id: id ?? this.id, name: name ?? this.name);
+  }
+}
+
+final m&Home&StateProvider = StateProvider.autoDispose<&Home&StateEntity>((ref) {
+  return &Home&StateEntity(id: -1, name: 'Guoql');
+});
+
+class &Home&PageViewModel extends BaseViewModel {
+  late StateController<&Home&StateEntity> m&Home&StateController;
+  final CancelToken _cancelToken = CancelToken();
+
+  @override
+  void doInit(BuildContext context, WidgetRef ref) {
+    m&Home&StateController = ref.watch(m&Home&StateProvider.notifier);
+  }
+
+  @override
+  void dispose() {
+    m&Home&StateController.dispose();
+    _cancelToken.cancel();
+  }
+
+  void updateState(String name, String passwd) {
+    m&Home&StateController.update((state) => &Home&StateEntity(id: 110, name: 'update-name'));
+  }
+
+}
+
