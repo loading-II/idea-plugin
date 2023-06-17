@@ -1,0 +1,63 @@
+<idea-plugin>
+    <id>com.frame.plugin</id>
+    <name>xPlugin</name>
+    <version>1.0</version>
+    <vendor email="**@163.com" url="https://www.jianshu.com/u/260df6dd6387">Guoql</vendor>
+
+    <description><![CDATA[a simple idea plugin]]></description>
+
+    <change-notes><![CDATA[
+     view binding、data binding、compose
+   ]]>
+    </change-notes>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <!--    <group id="com.test.plugin.action.id" text="NewPlugin" description="new plugin">-->
+        <!--      <add-to-group group-id="NewXml" anchor="before" relative-to-action="NewHtmlFile"/>-->
+        <!--      <action id="NewPlugin.activity.action" class="com.frame.plugin.TestPlugin" text="Text _name"-->
+        <!--              description="new plugin"/>-->
+        <!--    </group>-->
+
+        <group id="com.load.plugin.NewMvvm.vbactivity" text="xView" description="new mvvm menu" popup="true"
+               icon="/icons/ic_logo.png">
+            <add-to-group group-id="NewXml" anchor="before" relative-to-action="NewHtmlFile"/>
+
+            <action id="NewMvvm.activity.vbactivity" class="com.frame.plugin.ViewBindingActivity" text="Text _name"
+                    description="new mvvm plugin"
+                    icon="/icons/ic_logo.png"/>
+
+            <action id="NewMvvm.activity.vbfragment" class="com.frame.plugin.ViewBindingFragment" text="Text _name"
+                    description="new mvvm plugin"
+                    icon="/icons/ic_logo.png"/>
+
+            <action id="NewMvvm.activity.vdbactivity" class="com.frame.plugin.ViewDataBindingActivity" text="Text _name"
+                    description="new mvvm plugin"
+                    icon="/icons/ic_logo.png"/>
+
+            <action id="NewMvvm.activity.vdbfragment" class="com.frame.plugin.ViewDataBindingFragment" text="Text _name"
+                    description="new mvvm plugin"
+                    icon="/icons/ic_logo.png"/>
+
+            <action id="com.compose.mvi.page" class="com.frame.plugin.ComposePage" text="Text _name"
+                    description="new mvvm plugin"
+                    icon="/icons/ic_logo.png"/>
+
+
+        </group>
+
+
+    </actions>
+
+</idea-plugin>
