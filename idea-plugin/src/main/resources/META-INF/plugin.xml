@@ -4,7 +4,7 @@
     <version>1.0</version>
     <vendor email="**@163.com" url="https://www.jianshu.com/u/260df6dd6387">Guoql</vendor>
 
-    <description><![CDATA[a simple idea plugin]]></description>
+    <description><![CDATA[This is a simple Android and Flutter scaffold]]></description>
 
     <change-notes><![CDATA[
      view binding、data binding、compose
