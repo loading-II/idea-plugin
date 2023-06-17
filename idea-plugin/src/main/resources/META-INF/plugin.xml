@@ -5,16 +5,16 @@
     <vendor email="**@163.com" url="https://www.jianshu.com/u/260df6dd6387">Guoql</vendor>
 
     <description><![CDATA[
-    This is an idea plugin tool helps you to store multi-type entries(texts, images, files etc.) in your copyboard. With this plugin installed, your pasteboard is well organized and data entries in it are saved structuredly rather than keeps only one entry.
+    An Android scaffolding toolkit to boost your Android projects.
+This is an Idea plugin helps Android developers build apps faster. It provides a feature-rich scaffolding solution to generate full project templates, UI layouts, adapters, fragments and other commonly used code structures. Reduce repetitive work and focus on business logic!
 Main Features:
-- Unlimited entry storage: Stores all your copyboard entries and builds a pasteboard library. You can save as many as entries you want.
-- Multi-type support: Supports text, image, files and more. All types of entries from your clipboard will be identified and saved well.
-- Tagging and searching: You can tag your entries for fast filtering and search. Quickly find what exactly you need.
-- Entry relationship: Related entries can be linked together. For example, attach an image to a text entry. This builds connections between relevant data entries.
-- Sync and backup: Entries are automatically synced and backed up in the cloud. No worries about data loss.
-- Entry versioning: Entry modifications are versioned. You can review history versions and restore if needed.
-- More advanced features: Such as batch paste, entry alias, parent-child relationship between entries etc.
-Use this plugin and say goodbye to a messy clipboard! Keep your pasteboard organized and data entries well preserved. A handy tool for any knowledge workers, bloggers, coders and more.
+- Project scaffolding: Generate a full Android project with custom package name and save path. Choice of an empty project or a starter project integrated with Jetpack libraries like Room, LiveData, ViewModel, Navigation and so on.
+- UI scaffolding: Generate Activity(or Fragment), Adapter for RecyclerView(or GridView, ListView), basic XML layout files with one click. Strongly-typed Adapter saves you from a bunch of findViewById.
+- Fragment generator: Generate ListFragment, DetailFragment, DialogFragment and so on. Take away the repetitive work of creating Fragments.
+- Database scaffolding: Generate basic Create, Read, Update, Delete (CRUD) operations for entities in your Room database.
+- And more: ViewModel generator, data model(POJO) generator, utility class generator, etc.
+This plugin utilizes the power of templates and makes use of IntelliJ live templates variable support. Templates are fully customizable. Once generated, the code is opened in the editor so you can modify it on demand.
+For any Android developers who want to improve productivity, this plugin is a must-have tool for your IntelliJ IDEA. Use it and focus on what really matters to build your Android apps faster and better!
 ]]></description>
 
     <change-notes><![CDATA[
