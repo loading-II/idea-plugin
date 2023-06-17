@@ -4,7 +4,7 @@
     <version>1.0</version>
     <vendor email="**@163.com" url="https://www.jianshu.com/u/260df6dd6387">Guoql</vendor>
 
-    <description><![CDATA[This is a simple Android and Flutter scaffold: view binding、data binding、compose、flutter-mvvm]]></description>
+    <description><![CDATA[This plugin allows you to easily create activities in mvi mode in IDEA And fragment, supporting both Compose and Flutter MVVM, supporting custom resource qualifiers, can generate a complete set of code for mvi design patterns with just one click, enabling rapid development and unified standardization of code. Enjoy rowing and fishing freely]]></description>
 
     <change-notes><![CDATA[
      view binding、data binding、compose
