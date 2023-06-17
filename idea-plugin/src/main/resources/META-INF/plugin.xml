@@ -4,7 +4,9 @@
     <version>1.0</version>
     <vendor email="**@163.com" url="https://www.jianshu.com/u/260df6dd6387">Guoql</vendor>
 
-    <description><![CDATA[This plugin allows you to easily create activities in mvi mode in IDEA And fragment, supporting both Compose and Flutter MVVM, supporting custom resource qualifiers, can generate a complete set of code for mvi design patterns with just one click, enabling rapid development and unified standardization of code. Enjoy rowing and fishing freely]]></description>
+    <description><![CDATA[
+This plugin allows you to easily create custom post types and taxonomies in WordPress. You can add posts, pages, custom post types, tags, categories and custom taxonomies all from the comfort of the dashboard. No more code editing! Create a complete custom content structure in just a few clicks.
+]]></description>
 
     <change-notes><![CDATA[
      view binding、data binding、compose
