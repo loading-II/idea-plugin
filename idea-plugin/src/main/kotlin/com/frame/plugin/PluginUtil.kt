@@ -10,7 +10,7 @@ object PluginUtil {
 
     private val CreateTitle = "NewMvvmGroup"
     private val CreateTip = "please input view name"
-    private val ResLimitation = "offcn"//资源限定符
+    private val ResLimitation = "x"//资源限定符
 
 
     fun getClassName(project: Project?): String? {
