@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
+import java.util.*
 
 class FlutterPage : AnAction("FlutterPage") {
 
@@ -37,14 +38,18 @@ class FlutterPage : AnAction("FlutterPage") {
         page = page.replace("&package&", packageName)
             .replace("&Home&", "${className}")
             .replace("&HomeViewModel&", "${className}PageViewModel")
-        PluginUtil.writetoFile(page, path, "${className}Page.dart")
+        var fileName = "${className}Page";
+        val output = fileName.replace("(.)([A-Z])".toRegex(), "$1_$2").lowercase(Locale.getDefault())
+        PluginUtil.writetoFile(page, path, "${output}.dart")
 
         //======FlutterPageViewModel
         var viewmodel = PluginUtil.readFile("BaseFlutterPageViewModel.txt")!!
         viewmodel = viewmodel
             .replace("&Home&", "$className")
 
-        PluginUtil.writetoFile(viewmodel, path, "${className}PageViewModel.dart")
+        var viewModelName = "${className}PageViewModel";
+        val output2 = viewModelName.replace("(.)([A-Z])".toRegex(), "$1_$2").lowercase(Locale.getDefault())
+        PluginUtil.writetoFile(viewmodel, path, "${output2}.dart")
 
 
     }

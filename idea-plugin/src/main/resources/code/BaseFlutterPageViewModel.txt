@@ -41,12 +41,12 @@ class &Home&StateEntity {
   }
 }
 
-final m&Home&StateProvider = StateProvider.autoDispose<&Home&StateEntity>((ref) {
-  return &Home&StateEntity(id: -1, name: 'Guoql');
+final m&Home&StateProvider = StateProvider.autoDispose<HttpResult<&Home&StateEntity>>((ref) {
+  return HttpResult<&Home&StateEntity>(state: HttpResultState.Nothing);
 });
 
 class &Home&PageViewModel extends BaseViewModel {
-  late StateController<&Home&StateEntity> m&Home&StateController;
+  late StateController<HttpResult<&Home&StateEntity>> m&Home&StateController;
   final CancelToken _cancelToken = CancelToken();
 
   @override
@@ -56,12 +56,14 @@ class &Home&PageViewModel extends BaseViewModel {
 
   @override
   void dispose() {
-    m&Home&StateController.dispose();
     _cancelToken.cancel();
   }
 
   void updateState(String name, String passwd) {
-    m&Home&StateController.update((state) => &Home&StateEntity(id: 110, name: 'update-name'));
+    m&Home&StateController.update((state) => HttpResult(
+              state: HttpResultState.OnSuccess,
+              data: &Home&StateEntity(id: 110, name: 'update-name'),
+            ));
   }
 
 }

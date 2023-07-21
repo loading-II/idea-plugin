@@ -35,9 +35,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class &Home&Page extends BaseRoutePage {
 
   static navigator(BuildContext context){
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return &Home&Page.getRoutePage(const &Home&Page());
-      }));
+      Navigator.of(context).push(
+            SlidePageRoute(builder: (context) => &Home&Page.getRoutePage(const &Home&Page())),
+          );
+
     }
 
   static ViewModelProvider<&HomeViewModel&> getRoutePage(BaseRoutePage child) {
