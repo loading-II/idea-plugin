@@ -1,10 +1,13 @@
-﻿import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import '../../common/base/BasePage.dart';
-import '../../common/ViewModelProvider.dart';
-
-import '&HomeViewModel&.dart';
+﻿import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
+import '&home_page_view_model&.dart';
+
+import '../../global/animation/slide_page_route.dart';
+import '../../global/base/BasePage.dart';
+import '../../global/base/ViewModelProvider.dart';
+import '../../widgets/commom_app_bar.dart';
+
 
 /*
  * #                                                   #
@@ -33,62 +36,75 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
  */
 
 class &Home&Page extends BaseRoutePage {
-
-  static navigator(BuildContext context){
-      Navigator.of(context).push(
-            SlidePageRoute(builder: (context) => &Home&Page.getRoutePage(const &Home&Page())),
-          );
-
-    }
-
-  static ViewModelProvider<&HomeViewModel&> getRoutePage(BaseRoutePage child) {
-    return ViewModelProvider(viewModel: &HomeViewModel&(), child: child);
-  }
-
   const &Home&Page({super.key});
 
   @override
   ConsumerState<&Home&Page> createState() => &Home&PageState();
-}
 
-class &Home&PageState extends BaseRoutePageState<&Home&Page> {
-  &HomeViewModel&? _viewModel;
-
-  @override
-  &HomeViewModel& getViewModel() {
-    _viewModel ??= ViewModelProvider.of(context);
-    return _viewModel!;
+  ///动态路由
+  static navigator({required BuildContext context, Map<String, dynamic>? arguments}) {
+      return Navigator.of(context).push(
+        SlidePageRoute(
+          arguments: arguments ?? {'argms': 'i am example'},
+          builder: (context) => &Home&Page.getRoutePage(const &Home&Page())),
+      );
   }
 
-  @override
-  void onLoad() {}
+  static ViewModelProvider<&HomeViewModel&> getRoutePage(BaseRoutePage child) {
+    return ViewModelProvider(viewModel: &HomeViewModel&(), child: child);
+  }
+}
+
+class &Home&PageState extends BaseRoutePageState<&Home&Page, &Home&PageViewModel> {
 
   @override
-  void onStateChange() {
-    ref.listen(m&Home&StateProvider, (previous, next) { });
+  void onListener() {}
+
+  @override
+  void onLoad() {
+    Map argms = ModalRoute.of(context)?.settings.arguments as Map;
+    print(argms["argms"]);
+  }
+
+  bool _onBackPressed() {
+      Navigator.pop(context);
+      return true;
   }
 
   @override
   Widget buildContent(BuildContext context) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text('&Home&Page'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'hello this is &Home&Page;',
+        appBar: CommonAppBar(
+                title: '&Home&Page',
+                  onBackPressed: () {
+                    _onBackPressed();
+      }),
+      floatingActionButton: FloatingActionButton(
+                onPressed: () {},
+                tooltip: 'Increment',
+                child: const Icon(Icons.add),
               ),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        ),
+      body: WillPopScope(
+              onWillPop: () async {
+                return _onBackPressed();
+              },
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('this is &Home&Page'),
+                    Divider(height: 15.h, color: Colors.transparent),
+                    SizedBox(
+                      height: 30.h,
+                      child: ElevatedButton(
+                          onPressed: () async {},
+                          child: const Text('add count')),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
       );
   }
 }

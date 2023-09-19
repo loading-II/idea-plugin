@@ -1,8 +1,8 @@
-﻿import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:we_flutter/common/base/BaseViewModel.dart';
+﻿import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../global/base/BaseViewModel.dart';
+import '../../global/http/http_result.dart';
+import '../../models/banner_entity.dart';
+import '../../repository/tcm_repository.dart';
 
 /*
  * #                                                   #
@@ -29,42 +29,23 @@ import 'package:we_flutter/common/base/BaseViewModel.dart';
  * #               佛祖保佑         永无BUG              #
  * #                                                   #
  */
-
-class &Home&StateEntity {
-  final int id;
-  final String name;
-
-  &Home&StateEntity({required this.id, required this.name});
-
-  &Home&StateEntity copyWith(int? id, String? name) {
-    return &Home&StateEntity(id: id ?? this.id, name: name ?? this.name);
-  }
-}
-
-final m&Home&StateProvider = StateProvider.autoDispose<HttpResult<&Home&StateEntity>>((ref) {
-  return HttpResult<&Home&StateEntity>(state: HttpResultState.Nothing);
-});
-
 class &Home&PageViewModel extends BaseViewModel {
-  late StateController<HttpResult<&Home&StateEntity>> m&Home&StateController;
-  final CancelToken _cancelToken = CancelToken();
 
-  @override
-  void doInit(BuildContext context, WidgetRef ref) {
-    m&Home&StateController = ref.watch(m&Home&StateProvider.notifier);
+ StateController<HttpResult<BannerEntity>>? _mBannerStateController;
+ final mBannerStateProvider = StateProvider.autoDispose<HttpResult<BannerEntity>>((ref) {
+    return HttpResult<BannerEntity>(state: HttpResultState.Nothing);
+ });
+
+ void loadBanner(WidgetRef ref) {
+    _mBannerStateController ??= ref.watch(mBannerStateProvider.notifier);
+
+    TcmRepository.instance.fetchBanner<List<BannerEntity>>(
+      cancelToken: getCancelToken(),
+      onSuccess: (List<BannerEntity> bannerList) {},
+      onError: (int code, String message) {},
+    );
   }
 
-  @override
-  void dispose() {
-    _cancelToken.cancel();
-  }
-
-  void updateState(String name, String passwd) {
-    m&Home&StateController.update((state) => HttpResult(
-              state: HttpResultState.OnSuccess,
-              data: &Home&StateEntity(id: 110, name: 'update-name'),
-            ));
-  }
 
 }
 
