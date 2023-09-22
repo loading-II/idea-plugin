@@ -1,13 +1,16 @@
 <idea-plugin>
     <id>com.frame.plugin</id>
-    <name>xPlugin</name>
-    <version>1.0</version>
-    <vendor email="**@163.com" url="https://www.jianshu.com/u/260df6dd6387">Guoql</vendor>
+    <name>xView</name>
+    <version>1.0.0</version>
+    <vendor email="**@163.com" url="https://juejin.cn/user/78820570040727">Guoql</vendor>
 
-    <description><![CDATA[Easy to create MVVM.[ ⌃⇧M ] required: androidx,LiveData,DataBinding,Kotlin,ViewModel plucky@echo.engineer]]></description>
+    <description><![CDATA[
+    Easy to create MVVM.
+    required: androidx,LiveData,DataBinding,Kotlin,ViewModel
+]]></description>
 
     <change-notes><![CDATA[
-     view binding、data binding、compose
+     view-binding、data-binding、compose、flutter
    ]]>
     </change-notes>
 

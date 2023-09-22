@@ -31,9 +31,9 @@ import '../../repository/tcm_repository.dart';
  */
 class &Home&PageViewModel extends BaseViewModel {
 
- StateController<HttpResult<BannerEntity>>? _mBannerStateController;
- final mBannerStateProvider = StateProvider.autoDispose<HttpResult<BannerEntity>>((ref) {
-    return HttpResult<BannerEntity>(state: HttpResultState.Nothing);
+ StateController<HttpResult<List<BannerEntity>>>? _mBannerStateController;
+ final mBannerStateProvider = StateProvider.autoDispose<HttpResult<List<BannerEntity>>>((ref) {
+    return HttpResult<List<BannerEntity>>(state: HttpResultState.beforeRequest);
  });
 
  void loadBanner(WidgetRef ref) {
@@ -41,8 +41,13 @@ class &Home&PageViewModel extends BaseViewModel {
 
     TcmRepository.instance.fetchBanner<List<BannerEntity>>(
       cancelToken: getCancelToken(),
-      onSuccess: (List<BannerEntity> bannerList) {},
-      onError: (int code, String message) {},
+      onSuccess: (List<BannerEntity> bannerList) {
+        _mBannerStateController?.update((state) => HttpResult(state: HttpResultState.onSuccess, data: bannerList));
+      },
+      onError: (int code, String message) {
+        _mBannerStateController?.update((state) =>
+                    HttpResult(state: HttpResultState.onError, error: HttpResultError(code: code, message: message)));
+      },
     );
   }
 

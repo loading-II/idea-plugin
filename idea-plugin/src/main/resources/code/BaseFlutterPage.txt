@@ -3,10 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import '&home_page_view_model&.dart';
 
+
 import '../../global/animation/slide_page_route.dart';
 import '../../global/base/BasePage.dart';
 import '../../global/base/ViewModelProvider.dart';
 import '../../widgets/commom_app_bar.dart';
+import '../../global/http/http_result.dart';
+import '../../models/banner_entity.dart';
+import '../../widgets/common_exception_layout.dart';
 
 
 /*
@@ -84,7 +88,35 @@ class &Home&PageState extends BaseRoutePageState<&Home&Page, &Home&PageViewModel
                 tooltip: 'Increment',
                 child: const Icon(Icons.add),
               ),
-      body: WillPopScope(
+      body: _getBody());
+  }
+
+  /// 使用Consumer(ConsumerWidget的封装)，控制刷新的范围。实现局部刷新
+    Consumer _getBody() => Consumer(builder: (context, ref, _) {
+          ///监听数据变化
+          /*ref.listen(getViewModel(context).mCountStateProvider, (previous, next) {
+             logger.e('buildContent===2222');
+          });*/
+
+          ///观察数据变化，Widget的值跟随一起变化
+          HttpResult<List<BannerEntity>> bannerResult = ref.watch(getViewModel(context).mBannerStateProvider);
+
+          int getHttpStatue() {
+            if (bannerResult.state == HttpResultState.beforeRequest) {
+              return CommonExceptionLayout.beforeRequestEmptyLayout;
+            } else if (bannerResult.state == HttpResultState.onSuccess) {
+              ///根据业务需要，还可以细分是否数据为null等情况
+              return CommonExceptionLayout.requestSuccess;
+            } else if (bannerResult.state == HttpResultState.onError) {
+              return CommonExceptionLayout.exceptionServerError;
+            }
+            return CommonExceptionLayout.beforeRequestEmptyLayout;
+          }
+
+          return CommonExceptionLayout(
+            status: getHttpStatue(),
+            onRetry: () {},
+            body: WillPopScope(
               onWillPop: () async {
                 return _onBackPressed();
               },
@@ -96,17 +128,16 @@ class &Home&PageState extends BaseRoutePageState<&Home&Page, &Home&PageViewModel
                     Divider(height: 15.h, color: Colors.transparent),
                     SizedBox(
                       height: 30.h,
-                      child: ElevatedButton(
-                          onPressed: () async {},
-                          child: const Text('add count')),
+                      child: ElevatedButton(onPressed: () async {}, child: const Text('add count')),
                     ),
                   ],
                 ),
               ),
             ),
+          );
+        });
 
-      );
-  }
+
 }
 
 
