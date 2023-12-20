@@ -61,6 +61,11 @@
                     description="new mvvm plugin"
                     icon="/icons/ic_logo.png"/>
 
+            <!-- Add your actions here -->
+            <action id="com.frame.plugin.fai.add" class="com.frame.plugin.FlutterAddIMG" text="FlutterAddImage"
+                    description="new mvvm plugin"
+                    icon="/icons/ic_logo.png"/>
+
 
         </group>
 

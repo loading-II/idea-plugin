@@ -66,8 +66,10 @@ class &Home&PageState extends BaseRoutePageState<&Home&Page, &Home&PageViewModel
 
   @override
   void onLoad() {
-    Map argms = ModalRoute.of(context)?.settings.arguments as Map;
-    print(argms["argms"]);
+    final arguments = ModalRoute.of(context)?.settings.arguments;
+        if (arguments != null && arguments is Map) {
+          print(arguments["argms"]);
+    }
   }
 
   bool _onBackPressed() {
