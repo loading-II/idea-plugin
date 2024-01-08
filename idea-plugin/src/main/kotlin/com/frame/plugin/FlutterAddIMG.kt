@@ -28,7 +28,7 @@ class FlutterAddIMG : AnAction("Flutter Add Img") {
     var project: Project? = null
     var psiDirectory: PsiDirectory? = null
     var lib: VirtualFile? = null
-    var gen_a: VirtualFile? = null
+    var generated: VirtualFile? = null
     var a_file: VirtualFile? = null
     var assets: VirtualFile? = null
     var list = HashMap<String, String>()
@@ -247,17 +247,17 @@ class FlutterAddIMG : AnAction("Flutter Add Img") {
     fun initR() {
         WriteCommandAction.runWriteCommandAction(project, Runnable {
             try {
-                gen_a = lib!!.findChild("gen_a")
-                if (gen_a == null) {
-                    gen_a = lib!!.createChildDirectory(null, "gen_a")
+                generated = lib!!.findChild("generated")
+                if (generated == null) {
+                    generated = lib!!.createChildDirectory(null, "generated")
                 }
             } catch (ex: IOException) {
                 ex.printStackTrace()
             }
-            if (gen_a == null) {
+            if (generated == null) {
                 return@Runnable
             }
-            a_file = gen_a!!.findChild(R_DART_FILE)
+            a_file = generated!!.findChild(R_DART_FILE)
             if (a_file == null) {
                 PsiFileFactory.getInstance(project)
                 val s = "class R{\n" +
@@ -265,16 +265,18 @@ class FlutterAddIMG : AnAction("Flutter Add Img") {
                         "  static String test=\"test\";\n" +
                         "}"
                 val initFile =
-                    PsiFileFactory.getInstance(project).createFileFromText(R_DART_FILE,  s)
-                PsiManager.getInstance(project!!).findDirectory(gen_a!!)!!.add(initFile)
+                    PsiFileFactory.getInstance(project).createFileFromText(R_DART_FILE, s)
+                PsiManager.getInstance(project!!).findDirectory(generated!!)!!.add(initFile)
             } else {
             }
         })
     }
+
     val R_DART_FILE = "r.dart"
+
     //生成A文件的内容
     fun gen_AContent() {
-        a_file = gen_a!!.findChild(R_DART_FILE)
+        a_file = generated!!.findChild(R_DART_FILE)
         val sb = StringBuilder()
         val s = "class R{\n" +
                 " //auto gen ,do not edit! \n"
@@ -282,7 +284,19 @@ class FlutterAddIMG : AnAction("Flutter Add Img") {
         val iterator: Iterator<Map.Entry<String, String>> = list.entries.iterator()
         while (iterator.hasNext()) {
             val (key, value) = iterator.next()
-            sb.append("static const $key = \"$value\";\n")
+            var newkey = StringBuilder()
+            key.split("_").forEachIndexed { index, str ->
+                if (index > 0) {
+                    val firstStr = str.substring(0, 1)
+                    val otherStr = str.subSequence(1, str.length)
+                    newkey.append(firstStr.uppercase())
+                    newkey.append(otherStr)
+                } else {
+                    newkey.append(str)
+                }
+
+            }
+            sb.append("static const ${newkey.toString()} = \"$value\";\n")
         }
         sb.append("}")
         try {

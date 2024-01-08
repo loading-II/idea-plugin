@@ -33,7 +33,7 @@ class FlutterPage : AnAction("FlutterPage") {
         val packageName = path.substring(path.indexOf("lib") + 4, path.length).replace("/", ".")
         val main = path.substring(0, path.indexOf("lib"))
 
-        var viewModelName = "${className}PageViewModel";
+        var viewModelName = "${className}PageState";
         val output2 = viewModelName.replace("(.)([A-Z])".toRegex(), "$1_$2").lowercase(Locale.getDefault())
 
         //======FlutterPage

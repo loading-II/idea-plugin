@@ -1,10 +1,4 @@
-﻿import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../global/base/BaseViewModel.dart';
-import '../../global/http/http_result.dart';
-import '../../models/banner_entity.dart';
-import '../../repository/tcm_repository.dart';
-
-/*
+﻿/*
  * #                                                   #
  * #                       _oo0oo_                     #
  * #                      o8888888o                    #
@@ -29,28 +23,25 @@ import '../../repository/tcm_repository.dart';
  * #               佛祖保佑         永无BUG              #
  * #                                                   #
  */
-class &Home&PageViewModel extends BaseViewModel {
 
- StateController<HttpResult<List<BannerEntity>>>? _mBannerStateController;
- final mBannerStateProvider = StateProvider.autoDispose<HttpResult<List<BannerEntity>>>((ref) {
-    return HttpResult<List<BannerEntity>>(state: HttpResultState.beforeRequest);
- });
+ import 'package:flutter/cupertino.dart';
+ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
- void loadBanner(WidgetRef ref) {
-    _mBannerStateController ??= ref.watch(mBannerStateProvider.notifier);
-
-    TcmRepository.instance.fetchBanner<List<BannerEntity>>(
-      cancelToken: getCancelToken(),
-      onSuccess: (List<BannerEntity> bannerList) {
-        _mBannerStateController?.update((state) => HttpResult(state: HttpResultState.onSuccess, data: bannerList));
-      },
-      onError: (int code, String message) {
-        _mBannerStateController?.update((state) =>
-                    HttpResult(state: HttpResultState.onError, error: HttpResultError(code: code, message: message)));
-      },
-    );
+///&Home&Page-state-logic
+mixin &Home&PageState<T extends StatefulWidget> on State<T>, WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ///只有首次绘制完才回调,可以用于加载网络数据
+    });
   }
 
+  ///计数器案例
+  final counterProvider = StateProvider.autoDispose((ref) => 0);
 
+  void incrementCounter(WidgetRef ref) {
+    ref.read(counterProvider.notifier).state++;
+  }
 }
 
