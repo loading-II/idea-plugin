@@ -1,38 +1,16 @@
 <idea-plugin>
     <id>com.frame.plugin</id>
-    <name>xView</name>
+    <name>xPlugin</name>
     <version>1.0.0</version>
-    <vendor email="**@163.com" url="https://juejin.cn/user/78820570040727">Guoql</vendor>
-
-    <description><![CDATA[
-    Easy to create MVVM.
-    required: androidx,LiveData,DataBinding,Kotlin,ViewModel
-]]></description>
-
-    <change-notes><![CDATA[
-     view-binding、data-binding、compose、flutter
-   ]]>
+    <vendor email="" url="">Guoql</vendor>
+    <description><![CDATA[One click generation android or flutter view、configuration]]></description>
+    <change-notes><![CDATA[]]>
     </change-notes>
-
-    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
     <idea-version since-build="173.0"/>
-
-    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
-
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
     </extensions>
-
     <actions>
-        <!-- Add your actions here -->
-        <!--    <group id="com.test.plugin.action.id" text="NewPlugin" description="new plugin">-->
-        <!--      <add-to-group group-id="NewXml" anchor="before" relative-to-action="NewHtmlFile"/>-->
-        <!--      <action id="NewPlugin.activity.action" class="com.frame.plugin.TestPlugin" text="Text _name"-->
-        <!--              description="new plugin"/>-->
-        <!--    </group>-->
-
         <group id="com.load.plugin.NewMvvm.vbactivity" text="xView" description="new mvvm menu" popup="true"
                icon="/icons/ic_logo.png">
             <add-to-group group-id="NewXml" anchor="before" relative-to-action="NewHtmlFile"/>
@@ -58,18 +36,12 @@
                     icon="/icons/ic_logo.png"/>
 
             <action id="com.flutter.mvvm.page" class="com.frame.plugin.FlutterPage" text="Text _name"
-                    description="new mvvm plugin"
+                    description="One click generation of page、state、routing configuration"
                     icon="/icons/ic_logo.png"/>
-
             <!-- Add your actions here -->
             <action id="com.frame.plugin.fai.add" class="com.frame.plugin.FlutterAddIMG" text="FlutterAddImage"
-                    description="new mvvm plugin"
+                    description="One click generation of 2x、3x and R configuration"
                     icon="/icons/ic_logo.png"/>
-
-
         </group>
-
-
     </actions>
-
 </idea-plugin>
