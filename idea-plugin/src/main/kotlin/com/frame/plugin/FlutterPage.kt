@@ -45,6 +45,7 @@ class FlutterPage : AnAction("FlutterPage") {
         page = page.replace("&package&", packageName)
             .replace("&Home&", "$className2")
             .replace("&HomeViewModel&", "${className2}PageViewModel")
+            .replace("&HomePageState&", "$output2")
             .replace("&home_page_view_model&", output2)
 
         var fileName = "${className}_page"
@@ -54,6 +55,7 @@ class FlutterPage : AnAction("FlutterPage") {
         //======FlutterPageState
         var viewmodel = PluginUtil.readFile("BaseFlutterPageViewModel.txt")!!
         viewmodel = viewmodel.replace("&Home&", "$className2")
+
         PluginUtil.writetoFile(viewmodel, newClassPath, "${output2}.dart")
 
         //try add routeMap
